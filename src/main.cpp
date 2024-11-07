@@ -8,6 +8,7 @@
 #include <sstream>
 #include <string>
 #include "Crash.h"
+#include "../data/Motor_Vehicle_Collisions.csv"
 
 std::vector<Crash> parseData() {
     std::vector<Crash> crashes;
