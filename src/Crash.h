@@ -39,6 +39,7 @@ struct Crash {
     std::string vehicle3_type;
     std::string vehicle4_type;
     std::string vehicle5_type;
+
 };
 
 #endif //CRASH_H
