@@ -45,7 +45,7 @@ struct Crash {
 
 std::vector<Crash> parseData() {
     std::vector<Crash> crashes;
-    std::ifstream collisions("Motor_Vehicle_Collisions.csv");
+    std::ifstream collisions("../src/Motor_Vehicle_Collisions.csv");
     std::string line;
 
     if (!collisions.is_open()) {
@@ -99,8 +99,16 @@ std::vector<Crash> parseData() {
 int main() {
     auto crashes = parseData();
 
-    if (crashes.size() > 1) {
-        std::cout << "Crash Date: " << (crashes[1].crash_date) << std::endl;
+    if (!crashes.empty()) {
+        std::cout << "Incident 12253: " << std::endl;
+        std::cout << "Crash Date: " << (crashes[12252].crash_date) << std::endl;
+        std::cout << "Crash Time: " << (crashes[12252].crash_time) << std::endl;
+        std::cout << "Borough: " << (crashes[12252].borough) << std::endl;
+
+        std::cout << "Incident 8: " << std::endl;
+        std::cout << "Crash Date: " << (crashes[7].crash_date) << std::endl;
+        std::cout << "Crash Time: " << (crashes[7].crash_time) << std::endl;
+        std::cout << "Borough: " << (crashes[7].borough) << std::endl;
     }
     else {
         std::cerr << "Not enough data in file" << std::endl;
