@@ -8,22 +8,56 @@
 #include <sstream>
 #include <string>
 #include "Crash.h"
-#include "../data/Motor_Vehicle_Collisions.csv"
+
+using namespace std;
+
+struct Crash {
+    std::string crash_date;
+    std::string crash_time;
+    std::string borough;
+    std::string zip_code;
+    std::string latitude;
+    std::string longitude;
+    std::string location;
+    std::string on_street_name;
+    std::string cross_street_name;
+    std::string off_street_name;
+    std::string num_persons_injured;
+    std::string num_persons_killed;
+    std::string num_pedestrians_injured;
+    std::string num_pedestrians_killed;
+    std::string num_cyclists_injured;
+    std::string num_cyclists_killed;
+    std::string num_motorists_injured;
+    std::string num_motorists_killed;
+    std::string vehicle1;
+    std::string vehicle2;
+    std::string vehicle3;
+    std::string vehicle4;
+    std::string vehicle5;
+    std::string collision_ID;
+    std::string vehicle1_type;
+    std::string vehicle2_type;
+    std::string vehicle3_type;
+    std::string vehicle4_type;
+    std::string vehicle5_type;
+};
 
 std::vector<Crash> parseData() {
     std::vector<Crash> crashes;
-    std::ifstream collisions("Motor_Vehicle_Collisions");
+    std::ifstream collisions("Motor_Vehicle_Collisions.csv");
     std::string line;
 
     if (!collisions.is_open()) {
+        std::cerr << "Error opening collisions file" << std::endl;
         return crashes;
     }
 
     std::getline(collisions, line);
 
     while (std::getline(collisions, line)) {
-        std::istringstream stream(line);
         Crash crash;
+        std::istringstream stream(line);
 
         std::getline(stream, crash.crash_date, ',');
         std::getline(stream, crash.crash_time, ',');
@@ -65,9 +99,12 @@ std::vector<Crash> parseData() {
 int main() {
     auto crashes = parseData();
 
-    std::cout << "Crash Date: " << (crashes[1].crash_date) << std::endl;
-    std::cout << "Crash Time: " << (crashes[1].crash_time) << std::endl;
-    std::cout << "On Street: " << (crashes[1].on_street_name) << std::endl;
+    if (crashes.size() > 1) {
+        std::cout << "Crash Date: " << (crashes[1].crash_date) << std::endl;
+    }
+    else {
+        std::cerr << "Not enough data in file" << std::endl;
+    }
 
     return 0;
 }
