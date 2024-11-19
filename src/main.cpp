@@ -2,7 +2,6 @@
 // Created by Vishakh Surendran on 11/6/2024.
 //
 
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -23,7 +22,7 @@ int main() {
         std::cout << "Borough: " << (crashes[7].borough) << std::endl;
     }
     else {
-        std::cerr << "Not enough data in file" << std::endl;
+        std::cerr << "No data present in file" << std::endl;
     }
 
     return 0;
