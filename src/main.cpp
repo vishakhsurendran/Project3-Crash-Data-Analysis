@@ -28,5 +28,7 @@ int main() {
     */
 
     crashes3->displayCrashes("(40.667202, -73.8665)");
+
+    crashes3->getTotalsByBorough("BROOKLYN");
     return 0;
 }
