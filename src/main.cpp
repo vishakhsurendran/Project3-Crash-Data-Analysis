@@ -6,24 +6,27 @@
 #include <fstream>
 #include <string>
 #include "Crash.h"
+#include "HashTable.h"
 
 int main() {
-    auto crashes = parseData();
+   
+    // auto crashes2 = parseToMap();
+    auto crashes3 = new HashTable();
+    crashes3->parseDataToTable();
 
-    if (!crashes.empty()) {
-        std::cout << "Incident 15554: " << std::endl;
-        std::cout << "Crash Date: " << (crashes[15555].crash_date) << std::endl;
-        std::cout << "Crash Time: " << (crashes[15555].crash_time) << std::endl;
-        std::cout << "Borough: " << (crashes[15555].borough) << std::endl;
+    /*
+    if (!crashes2.empty()) {
+        std::cout << "Incident at :(40.667202, -73.8665)" << std::endl;
 
-        std::cout << "Incident 8: " << std::endl;
-        std::cout << "Crash Date: " << (crashes[7].crash_date) << std::endl;
-        std::cout << "Crash Time: " << (crashes[7].crash_time) << std::endl;
-        std::cout << "Borough: " << (crashes[7].borough) << std::endl;
+        search_Location("(40.667202, -73.8665)", crashes2);
+        totals_borough("Queens", crashes2);
+
     }
     else {
         std::cerr << "No data present in file" << std::endl;
     }
+    */
 
+    crashes3->displayCrashes("(40.667202, -73.8665)");
     return 0;
 }

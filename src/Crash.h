@@ -11,6 +11,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <map>
 
 struct Crash {
     std::string crash_date;
@@ -42,8 +43,12 @@ struct Crash {
     std::string vehicle3_type;
     std::string vehicle4_type;
     std::string vehicle5_type;
+    int num_vehicles_involved;
 };
 
-std::vector<Crash> parseData();
+std::multimap <std::string, Crash> parseToMap();
+void print_crash(Crash crash);
+void search_Location(std::string location, std::multimap<std::string,Crash> crashes);
+void totals_borough(std::string borough,std::multimap<std::string,Crash> crashes);
 
 #endif //CRASH_H
