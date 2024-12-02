@@ -27,6 +27,6 @@ int main() {
     }
     */
 
-    crashes3->display();
+    crashes3->displayCrashes("(40.667202, -73.8665)");
     return 0;
 }

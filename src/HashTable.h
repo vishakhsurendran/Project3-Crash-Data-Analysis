@@ -30,6 +30,8 @@ public:
     void insert(const Crash& data);
     std::list<Crash> search(const std::string& location) const;
     void display() const;
+
+    void displayCrashes(const std::string& location) const;
 };
 
 #endif //HASHTABLE_H

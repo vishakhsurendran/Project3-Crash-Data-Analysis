@@ -81,12 +81,26 @@ std::list<Crash> HashTable::search(const std::string& location) const {
 void HashTable::display() const {
     for (size_t i = 0; i < TABLE_SIZE; ++i) {
         if (!table[i].empty()) {
-            std::cout << "Index " << i << ":\n";
-            for (const auto& record : table[i]) {
-                std::cout << "  - " << record.crash_date << ", " << record.crash_time
-                          << ", " << record.location << ", " << record.num_persons_injured
-                          << " injured, " << record.num_persons_killed << " killed\n";
+            std::cout << "Index " << i << std::endl;
+            for (const auto& crash_instance : table[i]) {
+                std::cout << "  - " << crash_instance.crash_date << ", " << crash_instance.crash_time
+                          << ", " << crash_instance.location << ", " << crash_instance.num_persons_injured
+                          << " injured, " << crash_instance.num_persons_killed << " killed\n";
             }
+        }
+    }
+}
+
+void HashTable::displayCrashes(const std::string& location) const {
+    auto result = search(location);
+
+    if (!result.empty()) {
+        std::cout << "Crashes at " << location << std::endl;
+
+        for (const auto& crash_instance : result) {
+            std::cout << "  - " << crash_instance.crash_date << ", " << crash_instance.crash_time
+                << ", " << crash_instance.location << ", " << crash_instance.num_persons_injured
+                << " injured, " << crash_instance.num_persons_killed << " killed\n";
         }
     }
 }
