@@ -29,8 +29,7 @@ public:
     std::vector<std::list<Crash>> parseDataToTable();
     void insert(const Crash& data);
     std::list<Crash> search(const std::string& location) const;
-    void display() const;
-
+    void displayAll() const;
     void displayCrashes(const std::string& location) const;
 };
 

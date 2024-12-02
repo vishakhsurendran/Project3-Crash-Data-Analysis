@@ -78,7 +78,7 @@ std::list<Crash> HashTable::search(const std::string& location) const {
 }
 
 // Display all data in the hash table
-void HashTable::display() const {
+void HashTable::displayAll() const {
     for (size_t i = 0; i < TABLE_SIZE; ++i) {
         if (!table[i].empty()) {
             std::cout << "Index " << i << std::endl;
