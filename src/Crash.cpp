@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <iostream>
 #include "Crash.h"
+
 //Map Implemented by Conner 11/30/2024
 std::multimap<std::string, Crash> parseToMap(){
  std::multimap<std::string,Crash> crashes;
@@ -72,9 +73,6 @@ std::multimap<std::string, Crash> parseToMap(){
     }
     collisions.close();
     return crashes;
-
-
-
 }
 
 
@@ -88,13 +86,12 @@ void print_crash(Crash crash){
     std::cout << "Number of people killed: "<< crash.num_persons_killed<< std::endl;
     std::cout << "Number of vehicles involved: "<< crash.num_vehicles_involved << std::endl;
 }
+
 void search_Location(std::string location, std::multimap<std::string,Crash> crashes){
     auto range = crashes.equal_range(location);
     for(auto iter = range.first; iter !=range.second; ++iter)
     print_crash(iter->second);
 }
-
-
 
 void totals_borough(std::string borough, std::multimap<std::string,Crash> crashes){
     std::transform(borough.begin(), borough.end(), borough.begin(), ::toupper);

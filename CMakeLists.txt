@@ -8,4 +8,6 @@ include_directories(src)
 add_executable(Project3_Crash_Data_Analysis
     src/Crash.cpp
     src/Crash.h
-    src/main.cpp)
+    src/main.cpp
+        src/HashTable.h
+        src/HashTable.cpp)

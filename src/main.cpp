@@ -6,11 +6,15 @@
 #include <fstream>
 #include <string>
 #include "Crash.h"
+#include "HashTable.h"
 
 int main() {
    
-auto crashes2 = parseToMap();
+    // auto crashes2 = parseToMap();
+    auto crashes3 = new HashTable();
+    crashes3->parseDataToTable();
 
+    /*
     if (!crashes2.empty()) {
         std::cout << "Incident at :(40.667202, -73.8665)" << std::endl;
 
@@ -21,6 +25,8 @@ auto crashes2 = parseToMap();
     else {
         std::cerr << "No data present in file" << std::endl;
     }
+    */
 
+    crashes3->display();
     return 0;
 }
