@@ -19,6 +19,7 @@ std::vector<std::list<Crash>> HashTable::parseDataToTable() {
 
     while (std::getline(collisions, line)) {
         Crash crash;
+        std::string temp;
         std::istringstream stream(line);
 
         std::getline(stream, crash.crash_date, ',');
@@ -27,7 +28,11 @@ std::vector<std::list<Crash>> HashTable::parseDataToTable() {
         std::getline(stream, crash.zip_code, ',');
         std::getline(stream, crash.latitude, ',');
         std::getline(stream, crash.longitude, ',');
-        std::getline(stream, crash.location, ',');
+        //gets location data from latitude and longitude
+        crash.location = "("+crash.latitude+", "+crash.longitude+")";
+        //skips extra two columns from location data section
+        std::getline(stream, temp, ',');
+        std::getline(stream, temp, ',');
         std::getline(stream, crash.on_street_name, ',');
         std::getline(stream, crash.cross_street_name, ',');
         std::getline(stream, crash.off_street_name, ',');
