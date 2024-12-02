@@ -5,16 +5,26 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <QApplication>
+#include <QPushButton>
 #include "Crash.h"
 #include "HashTable.h"
 
+int main(int argc, char* argv[])
+{
+    QApplication a(argc, argv);
+    QPushButton button("Hello world!", nullptr);
+    button.resize(200, 100);
+    button.show();
+    return QApplication::exec();
+}
+
+/*
 int main() {
-   
     // auto crashes2 = parseToMap();
     auto crashes3 = new HashTable();
     crashes3->parseDataToTable();
 
-    /*
     if (!crashes2.empty()) {
         std::cout << "Incident at :(40.667202, -73.8665)" << std::endl;
 
@@ -25,10 +35,10 @@ int main() {
     else {
         std::cerr << "No data present in file" << std::endl;
     }
-    */
 
     crashes3->displayCrashes("(40.667202, -73.8665)");
 
     crashes3->getTotalsByBorough("BROOKLYN");
     return 0;
 }
+*/
