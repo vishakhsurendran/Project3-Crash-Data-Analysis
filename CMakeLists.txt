@@ -20,7 +20,8 @@ add_executable(Project3_Crash_Data_Analysis_UI src/main.cpp
         src/Crash.cpp
         src/HashTable.cpp
         src/Crash.h
-        src/HashTable.h)
+        src/HashTable.h
+        src/mainwindow.cpp)
 target_link_libraries(Project3_Crash_Data_Analysis_UI
         Qt::Core
         Qt::Charts
