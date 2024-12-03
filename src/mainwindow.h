@@ -43,24 +43,44 @@ public:
         // Add the rest of the UI below the back button
         QHBoxLayout *contentLayout = new QHBoxLayout();
 
-        // Left layout for the title
+        // Left layout for the title and image
         QVBoxLayout *leftLayout = new QVBoxLayout();
 
         QLabel *title = new QLabel("Crash Data Analysis", this);
         title->setAlignment(Qt::AlignCenter);
-        title->setStyleSheet("font-size: 20pt; color:black;");
+        title->setStyleSheet("font-size: 24pt; color:black;");
         leftLayout->addWidget(title);
         leftLayout->setAlignment(title, Qt::AlignTop);
+
+        leftLayout->addStretch();
+
+        // Add the image to the left layout
+        QLabel *imageLabel = new QLabel(this);
+        QPixmap image("../src/DataBarGraph.png");
+        if (!image.isNull()) {
+            image = image.scaled(700, 600, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+            imageLabel->setPixmap(image);
+            imageLabel->setAlignment(Qt::AlignCenter);
+            leftLayout->addWidget(imageLabel);
+        } else {
+            imageLabel->setText("Image not found");
+            imageLabel->setAlignment(Qt::AlignCenter);
+            imageLabel->setStyleSheet("color: red; font-size: 12pt;");
+            leftLayout->addWidget(imageLabel);
+        }
+
         leftLayout->addStretch();
 
         // Right Layout (Drop-down Menu and Text Box)
         QVBoxLayout *rightLayout = new QVBoxLayout();
-        QComboBox *dropDown = new QComboBox(this);
-        dropDown->addItems({"Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island"});
-        QLabel *dropDownLabel = new QLabel("Select a Borough:", this);
 
         QVBoxLayout *dropDownLayout = new QVBoxLayout();
+        QLabel *dropDownLabel = new QLabel("Select a Borough:", this);
+        dropDownLabel->setStyleSheet("color: black; font-size: 12pt;");
         dropDownLayout->addWidget(dropDownLabel);
+
+        QComboBox *dropDown = new QComboBox(this);
+        dropDown->addItems({"Bronx", "Brooklyn", "Manhattan", "Queens", "Staten Island"});
         dropDownLayout->addWidget(dropDown);
         dropDownLayout->addStretch();
         rightLayout->addLayout(dropDownLayout);
