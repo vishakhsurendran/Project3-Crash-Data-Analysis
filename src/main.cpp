@@ -35,15 +35,31 @@
 using namespace QtCharts;
 */
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
     QWidget window;
     window.resize(800, 600);
+
+    // Create a layout for the window
+    QVBoxLayout *layout = new QVBoxLayout(&window);
+
+    // Create the QLabel for the title
+    QLabel title("Crash Data Analysis", &window);
+    title.setAlignment(Qt::AlignCenter);
+    title.setStyleSheet("font-size: 18pt;");
+
+    // Add the title at the top of the layout
+    layout->addWidget(&title);
+    layout->setAlignment(&title, Qt::AlignTop);
+
+    // Set the layout for the window
+    window.setLayout(layout);
+
+    // Set the window properties
+    window.setWindowTitle("Crash Data Analysis");
     window.show();
-    window.setWindowTitle(
-        QApplication::translate("toplevel", "Crash Data Analysis"));
+
     return app.exec();
 }
 
