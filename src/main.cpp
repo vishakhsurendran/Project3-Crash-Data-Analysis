@@ -52,16 +52,40 @@ int main(int argc, char *argv[]) {
     }
 
     int selectedOption = startMenu.getSelectedOption();
-    if (selectedOption == 0) {
-        MainWindow window(&crashesHash, nullptr);
-        window.setWindowTitle("Crash Data Analysis - HashTable");
-        window.show();
-        return app.exec();
-    } else if (selectedOption == 1) {
-        MainWindow window(nullptr, &crashesMap);
-        window.setWindowTitle("Crash Data Analysis - MultiMap");
-        window.show();
-        return app.exec();
+    while (true) { // Loop to allow returning to the StartMenu
+        if (selectedOption == 0) {
+            MainWindow window(&crashesHash, nullptr);
+            window.setWindowTitle("Crash Data Analysis - HashTable");
+
+            QObject::connect(&window, &MainWindow::backRequested, [&]() {
+                selectedOption = -1; // Reset to indicate returning to StartMenu
+                window.close();
+            });
+
+            window.show();
+            app.exec();
+        } else if (selectedOption == 1) {
+            MainWindow window(nullptr, &crashesMap);
+            window.setWindowTitle("Crash Data Analysis - MultiMap");
+
+            QObject::connect(&window, &MainWindow::backRequested, [&]() {
+                selectedOption = -1; // Reset to indicate returning to StartMenu
+                window.close();
+            });
+
+            window.show();
+            app.exec();
+        }
+
+        // Reopen StartMenu if back button is pressed
+        if (selectedOption == -1) {
+            if (startMenu.exec() != QDialog::Accepted) {
+                return 0; // Exit if the user closes the dialog
+            }
+            selectedOption = startMenu.getSelectedOption();
+        } else {
+            break; // Exit loop if no back action is required
+        }
     }
 
     return 0;

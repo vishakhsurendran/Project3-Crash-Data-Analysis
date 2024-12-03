@@ -31,14 +31,24 @@ public:
 
         // Central widget and main layout
         QWidget *centralWidget = new QWidget(this);
-        QHBoxLayout *mainLayout = new QHBoxLayout(centralWidget);
+        QVBoxLayout *mainLayout = new QVBoxLayout(centralWidget);
+
+        // Back Button
+        QPushButton *backButton = new QPushButton("Menu", this);
+        backButton->setFixedSize(100, 40); // Optional: Set button size
+        backButton->setStyleSheet("font-size: 12pt;"); // Optional: Style the button
+        connect(backButton, &QPushButton::clicked, this, &MainWindow::backToStartMenu);
+        mainLayout->addWidget(backButton, 0, Qt::AlignLeft); // Add button at top-left
+
+        // Add the rest of the UI below the back button
+        QHBoxLayout *contentLayout = new QHBoxLayout();
 
         // Left layout for the title
         QVBoxLayout *leftLayout = new QVBoxLayout();
 
         QLabel *title = new QLabel("Crash Data Analysis", this);
         title->setAlignment(Qt::AlignCenter);
-        title->setStyleSheet("font-size: 18pt; color:black;");
+        title->setStyleSheet("font-size: 20pt; color:black;");
         leftLayout->addWidget(title);
         leftLayout->setAlignment(title, Qt::AlignTop);
         leftLayout->addStretch();
@@ -66,8 +76,11 @@ public:
         rightWidget->setLayout(rightLayout);
         rightWidget->setMaximumWidth(width() / 3);
 
-        mainLayout->addLayout(leftLayout);
-        mainLayout->addWidget(rightWidget);
+        contentLayout->addLayout(leftLayout);
+        contentLayout->addWidget(rightWidget);
+
+        // Add content layout to the main layout (below the back button)
+        mainLayout->addLayout(contentLayout);
 
         setCentralWidget(centralWidget);
 
@@ -76,9 +89,8 @@ public:
         updateTextBox(0);
     }
 
-    ~MainWindow() {
-        delete ui;
-    }
+signals:
+    void backRequested(); // Signal to notify back button press
 
 private slots:
     void updateTextBox(int index) {
@@ -94,6 +106,10 @@ private slots:
         } else {
             textDisplay->setText("Invalid borough selected.");
         }
+    }
+
+    void backToStartMenu() {
+        emit backRequested(); // Emit signal to return to StartMenu
     }
 
 private:
