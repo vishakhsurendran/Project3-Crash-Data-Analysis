@@ -124,3 +124,22 @@ void totals_borough(std::string borough, std::multimap<std::string,Crash> crashe
     std::cout << "Total Injured: " << total_injured <<std::endl;
     std::cout << "Total Killed: " << total_killed<<std::endl;
 }
+
+void displayMapCrashesByBorough(const std::string& borough, std::multimap<std::string,Crash> crashes, std::ostream& output) {
+    int count = 0;
+
+    if(!crashes.empty()) {
+        for(auto iter = crashes.begin(); iter != crashes.end(); ++iter){
+            if (iter->second.borough == borough){
+                count += 1;
+                output << count << ". " << iter->second.crash_date << ", " << iter->second.crash_time
+                               << ", " << iter->second.location << ", " << iter->second.num_persons_injured
+                               << " injured, " << iter->second.num_persons_killed << " killed\n";
+            }
+        }
+    }
+
+    if (count == 0) {
+        output << "No crashes found for " << borough << ".\n";
+    }
+}

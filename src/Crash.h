@@ -50,5 +50,6 @@ std::multimap <std::string, Crash> parseToMap();
 void print_crash(Crash crash);
 void search_Location(std::string location, std::multimap<std::string,Crash> crashes);
 void totals_borough(std::string borough,std::multimap<std::string,Crash> crashes);
+void displayMapCrashesByBorough(const std::string& borough, std::multimap<std::string,Crash> crashes, std::ostream& output);
 
 #endif //CRASH_H
