@@ -105,6 +105,27 @@ void HashTable::displayCrashes(const std::string& location) const {
     }
 }
 
+void HashTable::displayCrashesByBorough(const std::string& borough, std::ostream& output) const {
+    int count = 0;
+
+    for (size_t i = 0; i < TABLE_SIZE; ++i) {
+        if (!table[i].empty()) {
+            for (const auto& crash_instance : table[i]) {
+                if (crash_instance.borough == borough) {
+                    count += 1;
+                    output << count << ". " << crash_instance.crash_date << ", " << crash_instance.crash_time
+                           << ", " << crash_instance.location << ", " << crash_instance.num_persons_injured
+                           << " injured, " << crash_instance.num_persons_killed << " killed\n";
+                }
+            }
+        }
+    }
+
+    if (count == 0) {
+        output << "No crashes found for " << borough << ".\n";
+    }
+}
+
 void HashTable::getTotalsByBorough(const std::string& borough) const {
     int total_accidents = 0;
     int total_injured = 0;
