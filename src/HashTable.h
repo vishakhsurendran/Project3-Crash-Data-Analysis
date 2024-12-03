@@ -31,6 +31,7 @@ public:
     std::list<Crash> search(const std::string& location) const;
     void displayAll() const;
     void displayCrashes(const std::string& location) const;
+    void getTotalsByBorough(const std::string& borough) const;
 };
 
 #endif //HASHTABLE_H
