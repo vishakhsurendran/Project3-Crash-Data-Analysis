@@ -9,7 +9,9 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS
         Core
+        Charts
         Gui
+        Graphs
         Widgets
         REQUIRED)
 
@@ -21,7 +23,9 @@ add_executable(Project3_Crash_Data_Analysis_UI src/main.cpp
         src/HashTable.h)
 target_link_libraries(Project3_Crash_Data_Analysis_UI
         Qt::Core
+        Qt::Charts
         Qt::Gui
+        Qt::Graphs
         Qt::Widgets
 )
 

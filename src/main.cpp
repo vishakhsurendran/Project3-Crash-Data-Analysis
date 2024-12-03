@@ -6,10 +6,48 @@
 #include <fstream>
 #include <string>
 #include <QApplication>
+#include <QtWidgets>
 #include <QPushButton>
+#include <QMainWindow>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QComboBox>
+#include <QTextEdit>
+#include <QChart>
+#include <QChartView>
+#include <QBarSet>
+#include <QBarSeries>
+#include <QBarCategoryAxis>
+#include <QValueAxis>
 #include "Crash.h"
 #include "HashTable.h"
 
+// Possible directives for Graph Creation
+/*
+#include <QChart>
+#include <QChartView>
+#include <QBarSet>
+#include <QBarSeries>
+#include <QBarCategoryAxis>
+#include <QValueAxis>
+
+using namespace QtCharts;
+*/
+
+int main(int argc, char *argv[])
+{
+    QApplication app(argc, argv);
+
+    QWidget window;
+    window.resize(800, 600);
+    window.show();
+    window.setWindowTitle(
+        QApplication::translate("toplevel", "Crash Data Analysis"));
+    return app.exec();
+}
+
+/*
 int main(int argc, char* argv[])
 {
     QApplication a(argc, argv);
@@ -19,7 +57,6 @@ int main(int argc, char* argv[])
     return QApplication::exec();
 }
 
-/*
 int main() {
     // auto crashes2 = parseToMap();
     auto crashes3 = new HashTable();
