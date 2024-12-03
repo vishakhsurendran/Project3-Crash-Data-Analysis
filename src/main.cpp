@@ -41,13 +41,17 @@ int main(int argc, char *argv[]) {
     QWidget window;
     window.resize(800, 600);
 
+    QPalette pal = app.palette();
+    pal.setColor(QPalette::Window, QColorConstants::Svg::lightsteelblue);
+    app.setPalette(pal);
+
     // Create a layout for the window
     QVBoxLayout *layout = new QVBoxLayout(&window);
 
     // Create the QLabel for the title
     QLabel title("Crash Data Analysis", &window);
     title.setAlignment(Qt::AlignCenter);
-    title.setStyleSheet("font-size: 18pt;");
+    title.setStyleSheet("font-size: 18pt; color:black;");
 
     // Add the title at the top of the layout
     layout->addWidget(&title);

@@ -26,7 +26,13 @@ std::multimap<std::string, Crash> parseToMap(){
         std::getline(stream, crash.borough, ',');
         std::getline(stream, crash.zip_code, ',');
         std::getline(stream, crash.latitude, ',');
+        if (crash.latitude == ""){
+            crash.latitude = "0";
+        }
         std::getline(stream, crash.longitude, ',');
+        if (crash.longitude == " "){
+            crash.longitude = "0";
+        }
         //gets location data from latitude and longitude
         crash.location = "("+crash.latitude+", "+crash.longitude+")";
         //skips extra two columns from location data section
@@ -110,8 +116,8 @@ void totals_borough(std::string borough, std::multimap<std::string,Crash> crashe
                total_killed += std::stoi(iter->second.num_persons_killed);
             }   catch (const std::exception&) {
                 continue;
-            }   
-                
+            }
+
         }
     }
     std::cout << "Total Accidents: " << total_accidents << std::endl;
