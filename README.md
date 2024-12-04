@@ -20,6 +20,7 @@ Alternatively, the executable which has been created by CLion and stored into th
 ### Needed Software: 
 
 Qt Library Install: https://www.qt.io/download-dev#eval-form
+
 Qt Install Guide: https://doc.qt.io/qt-6/qt-online-installation.html 
 
 ### Other Resources: 
